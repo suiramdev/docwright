@@ -1,0 +1,17 @@
+{
+  "name": "@docwright/core",
+  "version": "0.0.1",
+  "type": "module",
+  "bin": {
+    "docwright": "./src/cli/index.ts"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {},
+  "dependencies": {
+    "commander": "13.1.0",
+    "zod": "3.24.2",
+    "playwright": "^1.50.1"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "docwright-monorepo",
+  "workspaces": [
+    "packages/*",
+    "playground"
+  ],
+  "type": "module",
+  "scripts": {},
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
