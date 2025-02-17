@@ -1,3 +1,0 @@
-## Overview
-
-docwright is a library to transform scenarios written in Playwright/Vitest-like syntax into structured UI documentation.

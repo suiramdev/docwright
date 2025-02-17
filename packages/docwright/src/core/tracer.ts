@@ -9,6 +9,11 @@ export class Tracer {
   private traces: Trace[] = [];
   private traceStack: Trace[] = []; // Stack to track nested traces
 
+  /**
+   * Get the singleton instance of the tracer.
+   *
+   * @returns The singleton instance of the tracer.
+   */
   public static getInstance() {
     if (!Tracer.instance) {
       Tracer.instance = new Tracer();
@@ -16,6 +21,12 @@ export class Tracer {
     return Tracer.instance;
   }
 
+  /**
+   * Trace an event.
+   *
+   * @param type - The type of the trace.
+   * @param data - The data of the trace.
+   */
   public trace(type: string, data: unknown) {
     const newTrace = { type, data, children: [] };
 
@@ -26,6 +37,12 @@ export class Tracer {
     }
   }
 
+  /**
+   * Start a trace.
+   *
+   * @param type - The type of the trace.
+   * @param data - The data of the trace.
+   */
   public startTrace(type: string, data: unknown) {
     const newTrace = { type, data, children: [] };
 
@@ -38,6 +55,9 @@ export class Tracer {
     this.traceStack.push(newTrace);
   }
 
+  /**
+   * End a trace.
+   */
   public endTrace() {
     if (this.traceStack.length === 0) {
       throw new Error("No trace to end");
@@ -45,6 +65,11 @@ export class Tracer {
     this.traceStack.pop();
   }
 
+  /**
+   * Get the traces.
+   *
+   * @returns The traces.
+   */
   public getTraces() {
     return this.traces;
   }

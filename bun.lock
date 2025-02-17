@@ -10,26 +10,34 @@
         "typescript": "^5.0.0",
       },
     },
-    "packages/core": {
-      "name": "@docwright/core",
-      "version": "1.0.0",
+    "packages/docwright": {
+      "name": "docwright",
+      "version": "0.0.1",
+      "bin": {
+        "docwright": "./src/cli/index.ts"
+      },
       "dependencies": {
         "commander": "13.1.0",
         "playwright": "^1.50.1",
         "zod": "3.24.2",
       },
     },
+    "packages/docwright-render-markdown": {
+      "name": "docwright-render-markdown",
+      "version": "0.0.1",
+      "dependencies": {
+        "docwright": "link:docwright",
+      },
+    },
     "playground": {
       "name": "docwright-playground",
       "version": "1.0.0",
       "dependencies": {
-        "@docwright/core": "link:@docwright/core",
+        "docwright": "link:docwright",
       },
     },
   },
   "packages": {
-    "@docwright/core": ["@docwright/core@workspace:packages/core"],
-
     "@types/bun": ["@types/bun@1.2.2", "", { "dependencies": { "bun-types": "1.2.2" } }, "sha512-tr74gdku+AEDN5ergNiBnplr7hpDp3V1h7fqI2GcR/rsUaM39jpSeKH0TFibRvU0KwniRx5POgaYnaXbk0hU+w=="],
 
     "@types/node": ["@types/node@22.13.4", "", { "dependencies": { "undici-types": "~6.20.0" } }, "sha512-ywP2X0DYtX3y08eFVx5fNIw7/uIv8hYUKgXoK8oayJlLnKcRfEYCxWMVE1XagUdVtCJlZT1AU4LXEABW+L1Peg=="],
@@ -40,7 +48,11 @@
 
     "commander": ["commander@13.1.0", "", {}, "sha512-/rFeCpNJQbhSZjGVwO9RFV3xPqbnERS8MmIQzCtD/zl6gpJuV/bMLuN92oG3F7d8oDEHHRrujSXNUr8fpjntKw=="],
 
+    "docwright": ["docwright@workspace:packages/docwright"],
+
     "docwright-playground": ["docwright-playground@workspace:playground"],
+
+    "docwright-render-markdown": ["docwright-render-markdown@workspace:packages/docwright-render-markdown"],
 
     "fsevents": ["fsevents@2.3.2", "", { "os": "darwin" }, "sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA=="],
 
@@ -54,6 +66,8 @@
 
     "zod": ["zod@3.24.2", "", {}, "sha512-lY7CDW43ECgW9u1TcT3IoXHflywfVqDYze4waEz812jR/bZ8FHDsl7pFQoSZTz5N+2NqRXs8GBwnAwo3ZNxqhQ=="],
 
-    "docwright-playground/@docwright/core": ["@docwright/core@link:@docwright/core", { "bin": { "docwright": "./src/cli.ts" } }],
+    "docwright-playground/docwright": ["docwright@link:docwright", { "bin": { "docwright": "./src/cli/index.ts" } }],
+
+    "docwright-render-markdown/docwright": ["docwright@link:docwright", { "bin": { "docwright": "./src/cli/index.ts" } }],
   }
 }

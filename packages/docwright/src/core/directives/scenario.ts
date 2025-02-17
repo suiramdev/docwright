@@ -1,7 +1,7 @@
-import { type TaskCaseFn } from "@/models/task";
 import { TaskRunner } from "@/core/runner";
+import { type TaskCaseFn } from "@/models/TaskCase";
 
-export async function step(name: string, fn: TaskCaseFn) {
+export async function scenario(name: string, fn: TaskCaseFn) {
   const taskRunner = TaskRunner.getInstance();
 
   taskRunner.registerCase(name, fn);

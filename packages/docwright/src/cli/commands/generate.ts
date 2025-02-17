@@ -1,6 +1,7 @@
 import { Command } from "commander";
 import { loadConfig, getMatches } from "@/config/resolve";
 import type { OutputMessage } from "@/core/worker";
+import type { Trace } from "@/core/tracer";
 
 export const generateCommand = new Command("generate")
   .description("Generate documentation from scenario files")
@@ -10,6 +11,8 @@ export const generateCommand = new Command("generate")
 export async function generate(options: { config: string }) {
   const config = await loadConfig(options.config);
   const files = await getMatches(config);
+
+  let combinedTraces: Trace[] = [];
 
   for (const file of files) {
     const worker = new Worker(new URL("../../core/worker.ts", import.meta.url));
@@ -27,10 +30,12 @@ export async function generate(options: { config: string }) {
       };
     });
 
-    const traces = workerOutput.traces;
-
-    console.log(JSON.stringify(traces, null, 2));
+    combinedTraces.push(...workerOutput.traces);
 
     worker.terminate();
+  }
+
+  for (const output of config.outputs) {
+    await output.render(combinedTraces);
   }
 }

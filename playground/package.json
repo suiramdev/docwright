@@ -8,6 +8,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@docwright/core": "link:@docwright/core"
+    "docwright": "link:docwright",
+    "docwright-render-markdown": "link:docwright-render-markdown"
   }
 }
