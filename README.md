@@ -1,12 +1,17 @@
-> 🚧 docwright is currently in development.
 
-# docwright
+<div align="center">
+    <img src="./docs/images/dr-wright.webp" alt="docwright demo" />
+    <h1>docwright</h1>
+    <div style="display: flex; gap: 10px; align-items: center; justify-content: center; margin: 10px 0;">
+        <img src="https://img.shields.io/badge/Bun-%23000000.svg?style=for-the-badge&logo=bun&logoColor=white" alt="Bun" />
+        <img src="https://img.shields.io/badge/-playwright-%232EAD33?style=for-the-badge&logo=playwright&logoColor=white" alt="Playwright" />
+    </div>
+    <p><b>automate your application's UI documentation</b></p>
+</div>
 
 docwright is a library that generates UI documentation from Playwright-style test scripts. It automates the process of documenting your application's user interface.
 
-**📖 [Read API](./docs/api.md)**
-
-**🛠️ [Read Technical Details](./docs/technical-details.md)**
+[Read API](./docs/api.md)
 
 ## Quick Start
 
