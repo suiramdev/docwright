@@ -2,6 +2,10 @@
 
 docwright is a library that generates UI documentation from Playwright-style test scripts. It automates the process of documenting your application's user interface.
 
+**📖 [Read API](./docs/api.md)**
+
+**🛠️ [Read Technical Details](./docs/technical-details.md)**
+
 ## Quick Start
 
 1. **Install docwright**
@@ -26,13 +30,39 @@ docwright is a library that generates UI documentation from Playwright-style tes
     bunx docwright generate
     ```
 
-## Technical Details
+### Create your first scenario
 
-docwright is a Bun-exclusive library. It leverages Bun's [Workers](https://bun.sh/docs/api/workers) and dynamic `import()` to execute your scenarios and transform them into documentation.
+Create a file matching your docwright.config.ts glob pattern.
 
-> **Note:** I wanted to use Node.js to execute the scenarios, but Node.js handles ES modules differently than Bun. This means that the scenarios would need to be pre-compiled into JavaScript files, which is not what I want.
-> I had a workaround using [vite-node](https://www.npmjs.com/package/vite-node), but it was not reliable.
+Example: [portfolio.docwright.ts](./playground/portfolio.docwright.ts)
 
-### How it works
+```typescript
+import { describe, scenario, text, screenshot, highlight } from "docwright";
 
-TODO
+describe("suiram.dev portfolio", () => {
+  scenario("How to book a call", async ({ page }) => {
+    await text("Navigate to https://suiram.dev");
+    await page.goto("https://suiram.dev");
+    await text("Click the book a call button");
+    await highlight(
+      page.locator("a[href='https://calcom.suiram.dev/suiramdev/30min']")
+    );
+    await screenshot(page);
+  });
+});
+```
+
+## Roadmap
+
+- [ ] Add support for other output formats
+    - [ ] PDF
+- [ ] Use [driver.js](https://github.com/kamranahmedse/driver.js) for highlighting
+- [ ] Add more directives
+    - [ ] `heading(level: number, text: string)`
+    - [ ] `list(items: string[])`
+    - [ ] `table(headers: string[], rows: string[][])`
+    - [ ] `code(language: string, code: string)`
+    - [ ] `html(html: string)`
+    - [ ] `markdown(markdown: string)`
+- [ ] Host the docs on the web
+- [ ] Add integration and unit tests
