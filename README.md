@@ -1,4 +1,3 @@
-
 <div align="center">
     <img src="./docs/images/dr-wright.webp" alt="docwright demo" />
     <h1>docwright</h1>

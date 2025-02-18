@@ -38,6 +38,79 @@ scenario("How to sign up", async ({ page }) => {
 });
 ```
 
+
+## beforeAll
+
+Defines a hook that runs before all scenarios in a scenario suite.
+
+```typescript
+beforeAll(fn: HookFn)
+```
+
+Parameters:
+- `fn`: An async function containing the hook steps
+
+Example:
+```typescript
+beforeAll(async () => {
+  console.log("before all");
+});
+```
+
+## afterAll
+
+Defines a hook that runs after all scenarios in a scenario suite.
+
+```typescript
+afterAll(fn: HookFn)
+``` 
+
+Parameters:
+- `fn`: An async function containing the hook steps
+
+Example:
+```typescript 
+afterAll(async () => {
+  console.log("after all");
+});
+```
+
+## beforeEach
+
+Defines a hook that runs before each scenario in a scenario suite.
+
+```typescript
+beforeEach(fn: HookFn)
+``` 
+
+Parameters:
+- `fn`: An async function containing the hook steps
+
+Example:
+```typescript
+beforeEach(async () => {
+  console.log("before each");
+});
+```
+
+## afterEach
+
+Defines a hook that runs after each scenario in a scenario suite.
+
+```typescript
+afterEach(fn: HookFn)
+```
+
+Parameters:
+- `fn`: An async function containing the hook steps
+
+Example:
+```typescript
+afterEach(async () => {
+  console.log("after each");
+});
+```
+
 ## text
 
 Adds text content to the documentation output.
