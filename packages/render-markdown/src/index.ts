@@ -2,7 +2,7 @@ import Bun from "bun";
 import fs from "fs/promises";
 import path from "path";
 import crypto from "crypto";
-import { Renderer, type Trace } from "docwright";
+import { Renderer, type Trace } from "@docwright/core";
 
 export interface MarkdownRendererOptions {
   path: string;

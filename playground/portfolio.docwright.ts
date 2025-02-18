@@ -1,4 +1,10 @@
-import { describe, scenario, text, screenshot, highlight } from "docwright";
+import {
+  describe,
+  scenario,
+  text,
+  screenshot,
+  highlight,
+} from "@docwright/core";
 
 describe("suiram.dev portfolio", () => {
   scenario("How to book a call", async ({ page }) => {

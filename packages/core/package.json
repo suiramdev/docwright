@@ -1,12 +1,15 @@
 {
-  "name": "docwright",
-  "version": "0.0.1",
+  "name": "@docwright/core",
+  "version": "0.1.0",
   "type": "module",
   "bin": {
     "docwright": "./src/cli/index.ts"
   },
   "exports": {
     ".": "./src/index.ts"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {},
   "dependencies": {

@@ -1,0 +1,15 @@
+{
+  "name": "@docwright/render-markdown",
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {},
+  "dependencies": {
+    "@docwright/core": "0.1.0"
+  }
+}
