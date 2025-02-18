@@ -3,6 +3,7 @@
     <img src="./docs/images/dr-wright.webp" alt="docwright demo" />
     <h1>docwright</h1>
     <div style="display: flex; gap: 10px; align-items: center; justify-content: center; margin: 10px 0;">
+        <img src="https://img.shields.io/npm/v/@docwright/core?style=for-the-badge" alt="npm version" />
         <img src="https://img.shields.io/badge/Bun-%23000000.svg?style=for-the-badge&logo=bun&logoColor=white" alt="Bun" />
         <img src="https://img.shields.io/badge/-playwright-%232EAD33?style=for-the-badge&logo=playwright&logoColor=white" alt="Playwright" />
     </div>
