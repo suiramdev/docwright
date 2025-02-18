@@ -19,7 +19,7 @@ docwright is a library that generates UI documentation from Playwright-style tes
 1. **Install docwright**
 
     ```bash
-    bun install docwright
+    bun install @docwright/core
     ```
 
     > Due to Node.js's limitations, docwright currently only works with Bun. [Read more](#technical-details)
@@ -45,7 +45,7 @@ Create a file matching your docwright.config.ts glob pattern.
 Example: [portfolio.docwright.ts](./playground/portfolio.docwright.ts)
 
 ```typescript
-import { describe, scenario, text, screenshot, highlight } from "docwright";
+import { describe, scenario, text, screenshot, highlight } from "@docwright/core";
 
 describe("suiram.dev portfolio", () => {
   scenario("How to book a call", async ({ page }) => {
