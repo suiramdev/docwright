@@ -2,19 +2,17 @@ import * as path from "path";
 import { tracer } from "./tracer";
 import { type Trace } from "@/models/Trace";
 import type { Task } from "@/models/Task";
-import { chromium, type Browser, type BrowserContext } from "playwright";
+import { chromium, type Browser } from "playwright";
 import { taskRegistry } from "./registry";
 import { TaskCase, TaskSuite, type TaskCaseContext } from "@/models";
 
 // To prevent TypeScript from complaining about the self variable
 declare var self: Worker;
 
-// The input message from the main thread
 export interface InputMessage {
   file: string;
 }
 
-// The output message to the main thread
 export interface OutputMessage {
   success: boolean;
   traces: Trace[];
@@ -42,25 +40,21 @@ self.onerror = (event: ErrorEvent) => {
   self.postMessage({ success: false, error: event.message });
 };
 
-// The task run context
 interface TaskRunContext {
   browser: Browser;
-  context: BrowserContext;
 }
 
 async function runTasks(tasks: Task[]) {
+  const browser = await chromium.launch();
+
   // Run all the tasks, creating a new browser and context for each one
   // and closing them when the task is done
   for (const task of tasks) {
-    const browser = await chromium.launch();
-    const context = await browser.newContext();
-
-    const runContext: TaskRunContext = { browser, context };
+    const runContext: TaskRunContext = { browser };
 
     try {
       await runTask(task, runContext);
     } finally {
-      await context.close();
       await browser.close();
     }
   }
@@ -68,10 +62,8 @@ async function runTasks(tasks: Task[]) {
 
 async function runTask(task: Task, runContext: TaskRunContext) {
   if (task instanceof TaskSuite) {
-    // Run the task suite recursively
     await runTaskSuite(task, runContext);
   } else if (task instanceof TaskCase) {
-    // Run the task case
     await runTaskCase(task, runContext);
   }
 }
@@ -82,9 +74,16 @@ async function runTaskSuite(task: TaskSuite, runContext: TaskRunContext) {
   });
 
   try {
+    for (const beforeAllFn of task.beforeAllFns) {
+      await beforeAllFn();
+    }
+
     for (const subTask of task.subTasks) {
-      // Run the sub-task recursively
       await runTask(subTask, runContext);
+    }
+
+    for (const afterAllFn of task.afterAllFns) {
+      await afterAllFn();
     }
   } finally {
     tracer.endTrace();
@@ -96,15 +95,32 @@ async function runTaskCase(task: TaskCase, runContext: TaskRunContext) {
     name: task.name,
   });
 
-  const page = await runContext.context.newPage();
+  const context = await runContext.browser.newContext();
+  const page = await context.newPage();
 
-  const caseContext: TaskCaseContext = { ...runContext, page };
+  const caseContext: TaskCaseContext = {
+    browser: runContext.browser,
+    context,
+    page,
+  };
 
   try {
-    // Run the task case
+    if (task.parentSuite) {
+      for (const beforeEachFn of task.parentSuite.beforeEachFns) {
+        await beforeEachFn(caseContext);
+      }
+    }
+
     await task.fn(caseContext);
+
+    if (task.parentSuite) {
+      for (const afterEachFn of task.parentSuite.afterEachFns) {
+        await afterEachFn(caseContext);
+      }
+    }
   } finally {
     await page.close();
+    await context.close();
   }
 
   tracer.endTrace();

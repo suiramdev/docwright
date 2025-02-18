@@ -3,7 +3,9 @@ import { type Trace } from "@/models/Trace";
 /**
  * The tracer.
  *
- * This class is responsible for tracing the events of the task runner.
+ * This class is responsible for tracing the events of the worker.
+ * It is used to create a tree of events, which can be used to generate
+ * rendered documentation.
  */
 export class Tracer {
   private static instance: Tracer;

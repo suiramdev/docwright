@@ -2,6 +2,12 @@ import { Task } from "@/models/Task";
 import { TaskSuite, type TaskSuiteFn } from "@/models/TaskSuite";
 import { TaskCase, type TaskCaseFn } from "@/models/TaskCase";
 
+/**
+ * The task registry.
+ *
+ * This class is responsible for registering the tasks and suites.
+ * It is used to register all the tasks (suites, cases, etc.) to be run by the worker.
+ */
 export class TaskRegistry {
   private static instance: TaskRegistry;
   private tasks: Task[] = [];
