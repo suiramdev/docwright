@@ -1,7 +1,7 @@
 import { Command } from "commander";
 import { loadConfig, getMatches } from "@/config/resolve";
 import type { OutputMessage } from "@/core/worker";
-import type { Trace } from "@/core/tracer";
+import type { Trace } from "@/models/Trace";
 
 export const generateCommand = new Command("generate")
   .description("Generate documentation from scenario files")

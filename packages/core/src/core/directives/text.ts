@@ -1,8 +1,6 @@
-import { Tracer } from "../tracer";
+import { tracer } from "@/core/tracer";
 
 export function text(value: string) {
-  const tracer = Tracer.getInstance();
-
   tracer.trace("text", {
     value,
   });

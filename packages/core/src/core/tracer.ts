@@ -1,9 +1,10 @@
-export interface Trace {
-  type: string;
-  data: unknown;
-  children: Trace[];
-}
+import { type Trace } from "@/models/Trace";
 
+/**
+ * The tracer.
+ *
+ * This class is responsible for tracing the events of the task runner.
+ */
 export class Tracer {
   private static instance: Tracer;
   private traces: Trace[] = [];
@@ -74,3 +75,5 @@ export class Tracer {
     return this.traces;
   }
 }
+
+export const tracer = Tracer.getInstance();

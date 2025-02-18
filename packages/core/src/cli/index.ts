@@ -2,7 +2,7 @@
 
 import { version } from "../../package.json";
 import { Command } from "commander";
-import { generateCommand } from "./commands/generate";
+import { generateCommand } from "@/cli/commands/generate";
 
 const program = new Command();
 
