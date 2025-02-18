@@ -1,5 +1,5 @@
-import type { Config } from "docwright";
-import { MarkdownRenderer } from "docwright-render-markdown";
+import type { Config } from "@docwright/core";
+import { MarkdownRenderer } from "@docwright/render-markdown";
 
 export const config: Config = {
   glob: "**/*.docwright.{js,ts}",

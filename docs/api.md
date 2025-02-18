@@ -33,7 +33,7 @@ Parameters:
 
 Example:
 ```typescript
-scenario("User can log in with valid credentials", async ({ page }) => {
+scenario("How to sign up", async ({ page }) => {
   // Scenario steps go here
 });
 ```

@@ -1,14 +1,9 @@
 {
   "name": "docwright-playground",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
   "scripts": {},
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "docwright": "link:docwright",
-    "docwright-render-markdown": "link:docwright-render-markdown"
+    "@docwright/core": "link:@docwright/core",
+    "@docwright/render-markdown": "link:@docwright/render-markdown"
   }
 }
