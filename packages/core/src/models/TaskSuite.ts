@@ -1,15 +1,13 @@
 import { Task } from "./Task";
-import type { TaskCaseFn } from "./TaskCase";
-
-export type TaskSuiteFn = () => Promise<void> | void;
+import type { HookEachFn, HookAllFn, TaskCaseFn, TaskSuiteFn } from "@/types";
 
 export class TaskSuite extends Task {
   public name: string;
   public parentSuite: TaskSuite | null;
-  public beforeAllFns: TaskSuiteFn[] = [];
-  public afterAllFns: TaskSuiteFn[] = [];
-  public beforeEachFns: TaskCaseFn[] = [];
-  public afterEachFns: TaskCaseFn[] = [];
+  public beforeAllFns: HookAllFn[] = [];
+  public afterAllFns: HookAllFn[] = [];
+  public beforeEachFns: HookEachFn[] = [];
+  public afterEachFns: HookEachFn[] = [];
 
   constructor(name: string, parentSuite: TaskSuite | null = null) {
     super();

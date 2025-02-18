@@ -1,10 +1,10 @@
 import * as path from "path";
 import { tracer } from "./tracer";
-import { type Trace } from "@/models/Trace";
+import type { Trace, TaskCaseContext } from "@/types";
 import type { Task } from "@/models/Task";
 import { chromium, type Browser } from "playwright";
 import { taskRegistry } from "./registry";
-import { TaskCase, TaskSuite, type TaskCaseContext } from "@/models";
+import { TaskCase, TaskSuite } from "@/models";
 
 // To prevent TypeScript from complaining about the self variable
 declare var self: Worker;
@@ -75,7 +75,7 @@ async function runTaskSuite(task: TaskSuite, runContext: TaskRunContext) {
 
   try {
     for (const beforeAllFn of task.beforeAllFns) {
-      await beforeAllFn();
+      await beforeAllFn(runContext);
     }
 
     for (const subTask of task.subTasks) {
@@ -83,7 +83,7 @@ async function runTaskSuite(task: TaskSuite, runContext: TaskRunContext) {
     }
 
     for (const afterAllFn of task.afterAllFns) {
-      await afterAllFn();
+      await afterAllFn(runContext);
     }
   } finally {
     tracer.endTrace();

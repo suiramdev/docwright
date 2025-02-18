@@ -1,14 +1,6 @@
-import type { Browser, BrowserContext, Page } from "playwright";
 import { Task } from "./Task";
 import { TaskSuite } from "./TaskSuite";
-
-export interface TaskCaseContext {
-  browser: Browser;
-  context: BrowserContext;
-  page: Page;
-}
-
-export type TaskCaseFn = (context: TaskCaseContext) => Promise<void> | void;
+import type { TaskCaseFn } from "@/types";
 
 export class TaskCase extends Task {
   public name: string;

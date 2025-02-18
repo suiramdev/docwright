@@ -1,4 +1,4 @@
-import { type Trace } from "@/models/Trace";
+import type { Trace } from "@/types";
 
 /**
  * The tracer.

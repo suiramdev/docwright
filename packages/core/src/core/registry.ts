@@ -1,6 +1,7 @@
 import { Task } from "@/models/Task";
-import { TaskSuite, type TaskSuiteFn } from "@/models/TaskSuite";
-import { TaskCase, type TaskCaseFn } from "@/models/TaskCase";
+import { TaskSuite } from "@/models/TaskSuite";
+import { TaskCase } from "@/models/TaskCase";
+import type { TaskSuiteFn, TaskCaseFn } from "@/types";
 
 /**
  * The task registry.
