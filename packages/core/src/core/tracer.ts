@@ -1,9 +1,12 @@
-export interface Trace {
-  type: string;
-  data: unknown;
-  children: Trace[];
-}
+import type { Trace } from "@/types";
 
+/**
+ * The tracer.
+ *
+ * This class is responsible for tracing the events of the worker.
+ * It is used to create a tree of events, which can be used to generate
+ * rendered documentation.
+ */
 export class Tracer {
   private static instance: Tracer;
   private traces: Trace[] = [];
@@ -74,3 +77,5 @@ export class Tracer {
     return this.traces;
   }
 }
+
+export const tracer = Tracer.getInstance();

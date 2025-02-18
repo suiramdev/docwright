@@ -1,8 +1,6 @@
-import { TaskRunner } from "@/core/runner";
-import { type TaskCaseFn } from "@/models/TaskCase";
+import { taskRegistry } from "@/core/registry";
+import type { TaskCaseFn } from "@/types";
 
 export async function scenario(name: string, fn: TaskCaseFn) {
-  const taskRunner = TaskRunner.getInstance();
-
-  taskRunner.registerCase(name, fn);
+  taskRegistry.registerCase(name, fn);
 }

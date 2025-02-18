@@ -1,8 +1,6 @@
-import { TaskRunner } from "@/core/runner";
-import { type TaskSuiteFn } from "@/models/TaskSuite";
+import { taskRegistry } from "@/core/registry";
+import type { TaskSuiteFn } from "@/types";
 
 export function describe(name: string, fn: TaskSuiteFn) {
-  const taskRunner = TaskRunner.getInstance();
-
-  taskRunner.registerSuite(name, fn);
+  taskRegistry.registerSuite(name, fn);
 }
