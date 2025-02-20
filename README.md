@@ -17,25 +17,25 @@ docwright is a library that generates UI documentation from Playwright-style tes
 
 1. **Install docwright**
 
-    ```bash
-    bun install @docwright/core
-    ```
+   ```bash
+   bun install @docwright/core
+   ```
 
-    > Due to Node.js's limitations, docwright currently only works with Bun. [Read more](#technical-details)
+   > Due to Node.js's limitations, docwright currently only works with Bun. [Read more](#technical-details)
 
 2. **Create a `docwright.config.ts` file.**
 
-    ```bash
-    bunx docwright init
-    ```
+   ```bash
+   bunx docwright init
+   ```
 
-    [Example `docwright.config.ts`](./examples/docwright.config.ts)
+   [Example `docwright.config.ts`](./examples/docwright.config.ts)
 
 3. **Run docwright**
 
-    ```bash
-    bunx docwright generate
-    ```
+   ```bash
+   bunx docwright generate
+   ```
 
 ### Create your first scenario
 
@@ -44,7 +44,13 @@ Create a file matching your docwright.config.ts glob pattern.
 Example: [portfolio.docwright.ts](./playground/portfolio.docwright.ts)
 
 ```typescript
-import { describe, scenario, text, screenshot, highlight } from "@docwright/core";
+import {
+  describe,
+  scenario,
+  text,
+  screenshot,
+  highlight,
+} from "@docwright/core";
 
 describe("suiram.dev portfolio", () => {
   scenario("How to book a call", async ({ page }) => {
@@ -59,17 +65,9 @@ describe("suiram.dev portfolio", () => {
 });
 ```
 
-## Roadmap
+## Credits
 
-- [ ] Add support for other output formats
-    - [ ] PDF
-- [ ] Use [driver.js](https://github.com/kamranahmedse/driver.js) for highlighting
-- [ ] Add more directives
-    - [ ] `heading(level: number, text: string)`
-    - [ ] `list(items: string[])`
-    - [ ] `table(headers: string[], rows: string[][])`
-    - [ ] `code(language: string, code: string)`
-    - [ ] `html(html: string)`
-    - [ ] `markdown(markdown: string)`
-- [ ] Host the docs on the web
-- [ ] Add integration and unit tests
+Thanks to:
+
+- [@yanndarwish](https://github.com/yanndarwish)
+- [@aziv7](https://github.com/aziv7)
