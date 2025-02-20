@@ -29,7 +29,7 @@ docwright is a library that generates UI documentation from Playwright-style tes
    bunx docwright init
    ```
 
-   [Example `docwright.config.ts`](./examples/docwright.config.ts)
+   [Example `docwright.config.ts`](./playground/docwright.config.ts)
 
 3. **Run docwright**
 
